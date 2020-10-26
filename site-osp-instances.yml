@@ -2,5 +2,60 @@
   connection: local
   become: no
   gather_facts: true
+
+  vars:
+    instances:
+      - name: frontend
+        cloud: openstack
+        secgroup: frontend
+        meta: 'group=load_balancers, deployment_name=dev'
+        ansible_key: ansible_ssh
+        image: rhel-guest
+        flavor: m1.medium
+        priv_net: int_network
+        pub_net: ext_network
+        userdata:  |
+          #!/bin/bash
+          curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+          cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
+      - name: app1
+        cloud: openstack
+        secgroup: apps
+        meta: 'group=app_servers, deployment_name=QA' 
+        ansible_key: ansible_ssh
+        image: rhel-guest
+        flavor: m1.medium
+        priv_net: int_network
+        pub_net: ext_network
+        userdata:  |
+          #!/bin/bash
+          curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+          cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
+      - name: app2
+        cloud: openstack
+        secgroup: apps
+        meta: 'group=app_servers, deployment_name=QA'
+        ansible_key: ansible_ssh
+        image: rhel-guest
+        flavor: m1.medium
+        priv_net: int_network
+        pub_net: ext_network
+        userdata:  |
+          #!/bin/bash
+          curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+          cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
+      - name: appdb1
+        cloud: openstack
+        secgroup: db
+        meta: 'group=app_servers, deployment_name=QA'
+        ansible_key: ansible_ssh
+        image: rhel-guest
+        flavor: m1.medium
+        priv_net: int_network
+        pub_net: ext_network
+        userdata:  |
+          #!/bin/bash
+          curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+          cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
   roles:
    - osp-servers
