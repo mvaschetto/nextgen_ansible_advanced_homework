@@ -1,5 +1,9 @@
 - hosts: localhost
   gather_facts: false 
   become: yes 
+
+  vars:
+    - proj_name: "Homework"
+    - proj_desc: "Homework assignment"
   roles:
     - config-tower
