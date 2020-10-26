@@ -21,6 +21,7 @@
 
 - name: Add/Remove floating IP from an instance
   os_floating_ip:
+    cloud: "{{ item.cloud | default('openstack') }}"
     server: "{{ item.name }}"
     network: "{{ item.pub_net }}"
   loop: "{{ instances }}"
