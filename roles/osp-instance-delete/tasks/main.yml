@@ -7,7 +7,7 @@
 
   - name: debug
     debug:
-      var: instance_info.name
+      var: instance_info
 
   - name: Delete instances
     os_server:
