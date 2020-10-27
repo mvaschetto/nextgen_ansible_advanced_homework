@@ -2,10 +2,34 @@
   gather_facts: false
   tasks:
   - name: OpenStack servers
+    os_server_info:
+      cloud: "{{ cloud | default('openstack') }}"
+      filters:
+      vm_state: active
+    register: server_status
+
+  - debug: 
+      var: server_status
+
+  - name: Fail if Instances is not active
+    fail:
+    when: server_status | length < 4
+    tags:
+      - ops.smoke
+
   - name: Curl website
+    uri:
+      url: "http://frontend"
+      return_content: yes
+      status_code: 200
+    register: webpage
+  
+  - debug: 
+      var: webpage.content
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
     when: "'Ansible has done its job' not in webpage.results[0].content"
     tags:
       - osp.smoke
+...
