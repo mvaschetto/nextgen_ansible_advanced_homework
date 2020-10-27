@@ -5,6 +5,9 @@
       cloud: "{{ cloud | default('openstack') }}"
     register: instance_info
 
+    debug:
+      var: instance_info
+
   - name: Delete instances
     os_server:
       cloud: "{{ item.cloud | default('openstack') }}"
