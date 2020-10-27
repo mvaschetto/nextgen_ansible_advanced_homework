@@ -8,8 +8,8 @@
   - name: Delete instances
     os_server:
       cloud: "{{ item.cloud | default('openstack') }}"
-      name: "{{ item.name }}"
+      name: "{{ item }}"
       state: absent
     loop: 
-      - instance_info.name
+      - instance_info.openstack_servers
    
