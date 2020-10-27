@@ -7,7 +7,7 @@
 
   - name: debug
     debug:
-      var: instance_info.openstack_servers
+      var: instance_info.openstack_servers.id
 
   - name: Delete instances
     os_server:
@@ -16,5 +16,5 @@
       name: "{{ item }}"
       state: absent
     loop: 
-      - instance_info.openstack_servers.id
+      - "{{ instance_info.openstack_servers.id }}"
    
