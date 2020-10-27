@@ -13,8 +13,8 @@
     os_server:
       cloud: "{{ item.cloud | default('openstack') }}"
       delete_fip: True
-      name: "{{ item.name }}"
+      name: "{{ item }}"
       state: absent
     loop: 
-      - instance_info.openstack_servers
+      - instance_info.openstack_servers.id
    
