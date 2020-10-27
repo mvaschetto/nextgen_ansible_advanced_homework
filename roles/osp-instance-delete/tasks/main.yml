@@ -12,7 +12,8 @@
   - name: Delete instances
     os_server:
       cloud: "{{ item.cloud | default('openstack') }}"
-      name: "{{ item }}"
+      delete_fip: True
+      name: "{{ item.name }}"
       state: absent
     loop: 
       - instance_info.openstack_servers
