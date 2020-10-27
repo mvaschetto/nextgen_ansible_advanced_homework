@@ -7,7 +7,7 @@
 
   - name: debug
     debug:
-      var: instance_info.openstack_servers.id
+      var: instance_info.openstack_servers
 
   - name: Delete instances
     os_server:
