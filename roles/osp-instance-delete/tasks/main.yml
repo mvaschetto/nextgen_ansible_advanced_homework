@@ -5,6 +5,7 @@
       cloud: "{{ cloud | default('openstack') }}"
     register: instance_info
 
+  - name: debug
     debug:
       var: instance_info
 
