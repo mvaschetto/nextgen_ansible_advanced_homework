@@ -13,8 +13,8 @@
     os_server:
       cloud: "{{ item.cloud | default('openstack') }}"
       delete_fip: True
-      name: "{{ item.id }}"
+      name: "{{ item }}"
       state: absent
     loop: 
-      - "{{ instance_info.ansible_facts.openstack_servers[*] }}"
+      - "{{ instance_info.ansible_facts.openstack_servers | dict2item | subelements('id') }}"
    
