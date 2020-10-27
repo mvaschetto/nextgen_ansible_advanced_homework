@@ -9,6 +9,13 @@
     backup: yes
 
 - name: enable repos
+  template:
+    src: repos_template.j2
+    dest: /etc/yum.repos.d/inernal.repo
+    state: present
  
-- name: install base tools and packages
+# - name: install base tools and packages
+#   package:
+#     name: python-jinja2
+#     state: present
 
