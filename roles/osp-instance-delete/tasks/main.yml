@@ -5,10 +5,6 @@
       cloud: "{{ cloud | default('openstack') }}"
     register: result
 
-  - name: debug
-    debug:
-      var: "{{result.openstack_servers}}"
-
   - name: Delete instances
     os_server:
       cloud: "{{ cloud | default('openstack') }}"

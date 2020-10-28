@@ -5,7 +5,7 @@
     os_server_info:
       cloud: "{{ cloud | default('openstack') }}"
       filters:
-      vm_state: active
+        vm_state: active
     register: server_status
 
   - debug: 
