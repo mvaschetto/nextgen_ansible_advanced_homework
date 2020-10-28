@@ -3,18 +3,17 @@
   - name: Fetch Instance Info
     os_server_facts:
       cloud: "{{ cloud | default('openstack') }}"
-    register: instance_info
+    register: result
 
   - name: debug
     debug:
-      var: instance_info.ansible_facts.openstack_servers
+      var: "{{result}}"
 
   - name: Delete instances
     os_server:
-      cloud: "{{ item.cloud | default('openstack') }}"
+      cloud: "{{ cloud | default('openstack') }}"
       delete_fip: True
-      name: "{{ item }}"
+      name: "{{ item.name }}"
       state: absent
-    loop: 
-      - "{{ instance_info.ansible_facts.openstack_servers | list2items | subelements('id') }}"
+    with_items: "{{result.openstack_servers}}"
    
