@@ -8,24 +8,12 @@
         vm_state: active
     register: server_status
 
-  - debug: 
-      var: server_status
-
-  - name: Fail if Instances is not active
-    fail:
-    when: server_status | length < 4
-    tags:
-      - ops.smoke
-
   - name: Curl website
     uri:
       url: "http://frontend"
       return_content: yes
       status_code: 200
     register: webpage
-  
-  - debug: 
-      var: webpage.content
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
