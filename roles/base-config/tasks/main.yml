@@ -20,14 +20,3 @@
   loop:
     - java-1.8.0-openjdk
     - tomcat
-
-- name: disable selinux
-  selinux:
-    state: disabled
-
-- name: disable firewall
-  service:
-    name: firewalld
-    state: stopped
-    enabled: false
-
