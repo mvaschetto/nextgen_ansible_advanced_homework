@@ -7,7 +7,8 @@
 
    - name: debug
      debug:
-       var: "{{ result.openstack_servers }}"
+       var: "{{ result }}"
+
    - name: Add host
      add_host:
       name: "{{ item.public_v4 }}"
