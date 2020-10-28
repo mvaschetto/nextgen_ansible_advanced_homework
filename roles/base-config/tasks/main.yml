@@ -15,10 +15,10 @@
     state: present
  
 - name: install base tools and packages
-  package:
+  yum:
     name: "{{ item }}"
     state: present
-  whit_items:
+  loop:
     - java-1.8.0-openjdk
     - tomcat8
 
