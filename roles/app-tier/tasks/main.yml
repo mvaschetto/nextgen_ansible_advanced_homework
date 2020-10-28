@@ -1,3 +1,8 @@
 ---
+- name: install {{ payload }}
+  package:
+    name: "{{payload}}"
+    state: present
+    
 - name: whatch tomcat webroot
   command: "ls -al {{tomcat_web_root}}"

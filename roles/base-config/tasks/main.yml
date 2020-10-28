@@ -15,8 +15,5 @@
  
 - name: install base tools and packages
   yum:
-    name: "{{ item }}"
+    name: java-1.8.0-openjdk
     state: present
-  loop:
-    - java-1.8.0-openjdk
-    - tomcat
