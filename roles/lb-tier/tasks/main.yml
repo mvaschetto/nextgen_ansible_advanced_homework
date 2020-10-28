@@ -1,11 +1,11 @@
 ---
-- name: install package
+- name: install {{ payload }}
   package:
-    name: haproxy
+    name: "{{payload}}"
     state: present
 
 - name: configure software
   template:
     src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
-  notify: haproxy_started
+  notify: restart "{{payload}}"
