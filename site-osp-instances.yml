@@ -8,7 +8,7 @@
       - name: frontend
         cloud: openstack
         secgroup: frontend
-        meta: 'group=load_balancers,deployment_name=dev'
+        meta: 'group=frontends,deployment_name=dev'
         ansible_key: ansible_ssh
         image: rhel-guest
         flavor: m1.medium
@@ -21,7 +21,7 @@
       - name: app1
         cloud: openstack
         secgroup: apps
-        meta: 'group=app_servers,deployment_name=QA' 
+        meta: 'group=apps,deployment_name=QA' 
         ansible_key: ansible_ssh
         image: rhel-guest
         flavor: m1.medium
@@ -34,7 +34,7 @@
       - name: app2
         cloud: openstack
         secgroup: apps
-        meta: 'group=app_servers,deployment_name=QA'
+        meta: 'group=apps,deployment_name=QA'
         ansible_key: ansible_ssh
         image: rhel-guest
         flavor: m1.medium
@@ -47,7 +47,7 @@
       - name: appdb1
         cloud: openstack
         secgroup: db
-        meta: 'group=app_servers,deployment_name=QA'
+        meta: 'group=appdbs,deployment_name=QA'
         ansible_key: ansible_ssh
         image: rhel-guest
         flavor: m1.medium
