@@ -19,7 +19,7 @@
     state: present
   loop:
     - java-1.8.0-openjdk
-    - tomcat8
+    - tomcat
 
 - name: disable selinux
   selinux:
