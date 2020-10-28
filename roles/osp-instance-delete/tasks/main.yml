@@ -1,7 +1,7 @@
 ---
 # tasks file for roles/osp-instance-delete
   - name: Fetch Instance Info
-    os_server_facts:
+    os_server_info:
       cloud: "{{ cloud | default('openstack') }}"
     register: result
 
