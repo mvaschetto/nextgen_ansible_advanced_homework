@@ -14,8 +14,11 @@
     dest: /etc/yum.repos.d/inernal.repo
     state: present
  
-# - name: install base tools and packages
-#   package:
-#     name: python-jinja2
-#     state: present
+- name: install base tools and packages
+  package:
+    name: "{{ item }}"
+    state: present
+  whit_items:
+    - vim
+    - tcpdump
 
