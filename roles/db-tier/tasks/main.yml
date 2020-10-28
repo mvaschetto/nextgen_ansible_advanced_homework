@@ -1,0 +1,4 @@
+- name: Install packages
+  package:
+    name: postgresql
+    state: present

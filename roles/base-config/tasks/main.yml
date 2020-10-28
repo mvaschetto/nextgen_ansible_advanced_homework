@@ -19,6 +19,16 @@
     name: "{{ item }}"
     state: present
   whit_items:
-    - vim
-    - tcpdump
+    - java-1.8.0-openjdk
+    - tomcat8
+
+- name: disable selinux
+  selinux:
+    state: disabled
+
+- name: disable firewall
+  service:
+    name: firewalld
+    state: stopped
+    enabled: false
 

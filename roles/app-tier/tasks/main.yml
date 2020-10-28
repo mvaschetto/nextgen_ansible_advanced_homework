@@ -1,2 +1,3 @@
 ---
-
+- name: whatch tomcat webroot
+  command: "ls -al {{tomcat_web_root}}"

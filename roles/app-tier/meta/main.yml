@@ -1,2 +1,11 @@
 ---
-dependencies: []
+- name: Install package
+  package:
+    name: httpd
+    state: present
+
+- name: create webpage
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+  notify: https_started
