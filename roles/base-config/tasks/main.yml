@@ -15,5 +15,5 @@
  
 - name: install base tools and packages
   yum:
-    name: java-1.8.0-openjdk
+    name: python
     state: present
