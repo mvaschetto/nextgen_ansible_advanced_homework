@@ -9,8 +9,14 @@
     state: directory
     path: "{{tomcat_web_root}}"
 
+- name: start and ensure is enabled service {{ payload }}
+  service: 
+    name: "{{payload}}"
+    enabled: yes
+    state: started
+    
 - name: configure {{ payload }}
   template:
     src: index.html.j2
     dest: "{{tomcat_web_root}}/index.html"  
-  notify: start {{ payload }}
+  notify: restart {{ payload }}
