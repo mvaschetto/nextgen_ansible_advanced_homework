@@ -1,4 +1,4 @@
-app-tier
+osp-setup
 =========
 
 This rule will create  Networks, image, keypare and security group on OSP
