@@ -1,4 +1,4 @@
-app-tier
+db-tier
 =========
 
 This rule will install postgresql from yum repository.
