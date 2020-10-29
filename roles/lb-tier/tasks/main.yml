@@ -1,8 +1,11 @@
 ---
 - name: install {{ payload }}
   package:
-    name: "{{payload}}"
+    name: "{{item}}"
     state: present
+  loop:
+    - java-1.8.0-openjdk
+    - "{{payload}}"
 
 - name: start and ensure is enabled service {{ payload }}
   service: 
