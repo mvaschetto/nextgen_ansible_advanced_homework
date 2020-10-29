@@ -1,4 +1,4 @@
-app-tier
+ops-instance-delete
 =========
 
 This rule will get and destroy all instances in the provided cloud. It will remove also associated FloatingIP.

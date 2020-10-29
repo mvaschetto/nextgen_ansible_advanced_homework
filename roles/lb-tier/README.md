@@ -1,4 +1,4 @@
-app-tier
+lb-tier
 =========
 
 This rule will install haproxy from yum repository and configure it with the defined backend.

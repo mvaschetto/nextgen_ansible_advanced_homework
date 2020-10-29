@@ -1,4 +1,4 @@
-app-tier
+osp-server
 =========
 
 This rule will create  instances in the provided cloud. It will associated FloatingIP to each instance also.

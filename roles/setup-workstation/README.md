@@ -1,4 +1,4 @@
-app-tier
+setup-workstation
 =========
 
 This rule will setup workstation to works with openstack.
