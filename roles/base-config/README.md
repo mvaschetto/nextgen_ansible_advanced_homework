@@ -1,4 +1,4 @@
-app-tier
+base-config
 =========
 
 This rule will configure yum repository and start the service and install common package from yum repository
