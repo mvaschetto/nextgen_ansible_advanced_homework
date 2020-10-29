@@ -7,13 +7,6 @@
   gather_facts: false
 
   tasks:
-  - name: OpenStack servers
-    os_server_info:
-      cloud: "{{ cloud | default('openstack') }}"
-      filters:
-        vm_state: active
-    register: server_status
-
   - name: Curl website
     uri:
       url: "http://localhost"
