@@ -15,5 +15,10 @@
  
 - name: install base tools and packages
   yum:
-    name: python
+    name: "{{item}}"
     state: present
+  loop:
+    - python 
+    - python-pip 
+    - python-devel 
+    - gcc
