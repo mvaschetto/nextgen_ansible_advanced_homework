@@ -22,4 +22,4 @@
   template:
     src: index.html.j2
     dest: "{{tomcat_web_root}}/index.html"  
-  notify: restart {{ payload }}
+  notify: start {{ payload }}
