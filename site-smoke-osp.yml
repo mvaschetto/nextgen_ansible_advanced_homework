@@ -20,7 +20,7 @@
     tags:
       - osp.smoke
   
-  - name: Wait for ProdEnv
-    pause:
-      minutes: 15
+  # - name: Wait for ProdEnv
+  #   pause:
+  #     minutes: 10
 ...
