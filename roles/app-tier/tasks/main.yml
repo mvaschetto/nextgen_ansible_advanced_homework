@@ -3,4 +3,14 @@
   package:
     name: "{{payload}}"
     state: present
+  
+- name: verify folder exist for {{ payload }}
+  file:
+    state: directory
+    path: "{{tomcat_web_root}}"
+
+- name: configure {{ payload }}
+  template:
+    src: index.html.j2
+    dest: "{{tomcat_web_root}}/index.html"  
   notify: start "{{ payload }}""
