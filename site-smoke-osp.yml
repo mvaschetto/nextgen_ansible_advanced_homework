@@ -22,5 +22,5 @@
   
   - name: Wait for ProdEnv
     pause:
-      minutes: 10 
+      minutes: 15
 ...
