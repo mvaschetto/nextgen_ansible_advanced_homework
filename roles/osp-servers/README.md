@@ -1,38 +1,77 @@
-Role Name
+app-tier
 =========
 
-A brief description of the role goes here.
+This rule will create  instances in the provided cloud. It will associated FloatingIP to each instance also.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+The host run this playbook need to have installed the openstacksdk package. 
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Vars of this rule are:
+| Var Name                      | Default                        | Required | Description                                                          |
+|:------------------------------|:-------------------------------|:---------|:---------------------------------------------------------------------|
+| name                          | Null                           | True     | Name to give to the instance                                         |
+| cloud                         | openstack                      | True     | Cloud to connect for create instance must match the clouds.yaml conf |
+| secgroup                      | Null                           | False    | Security group to associate to the instance                          |
+| meta                          | Null                           | False    | Meta do add to the instance                                          |
+| ansible_key                   | Null                           | False    | ssh keypare name to add in the instance                              |
+| image                         | Null                           | True     | Image name from where start the instance                             |
+| flavor                        | Null                           | True     | Flavor name to associate to the created instance                     |
+| priv_net                      | Null                           | True     | Private network where attach the instance                            |
+| pub_net                       | Null                           | True     | External network from where obtain floating IP                       |
+| userdata                      | Null                           | False    | Additional user data to add in the instance                          |
+ 
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No dependencies.
 
 Example Playbook
 ----------------
+```yaml
+- hosts: localhost
+  connection: local
+  become: no
+  gather_facts: true
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
+  vars:
+    instances:
+      - name: frontend
+        cloud: openstack
+        secgroup: frontend
+        meta: 'group=frontends,deployment_name=dev'
+        ansible_key: ansible_ssh
+        image: rhel-guest
+        flavor: m1.medium
+        priv_net: int_network
+        pub_net: ext_network
+        userdata:  |
+          #!/bin/bash
+          curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+          cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
+      - name: app1
+        cloud: openstack
+        secgroup: apps
+        meta: 'group=apps,deployment_name=QA' 
+        ansible_key: ansible_ssh
+        image: rhel-guest
+        flavor: m1.medium
+        priv_net: int_network
+        pub_net: ext_network
+        userdata:  |
+          #!/bin/bash
+          curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+          cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
+        ......
+  roles:
+   - osp-servers
+```
 License
 -------
 
 BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).

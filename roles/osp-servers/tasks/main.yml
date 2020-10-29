@@ -5,18 +5,15 @@
     cloud: "{{ item.cloud | default('openstack') }}"
     name: "{{ item.name }}"
     image: "{{ item.image }}"
-    key_name: "{{ item.ansible_key }}"
+    key_name: "{{ item.ansible_key | default(omit) }}"
     flavor: "{{ item.flavor }}"
-    security_groups: "{{ item.secgroup }}"
+    security_groups: "{{ item.secgroup | default(omit) }}"
     delete_fip: yes
     wait: no
     nics:
       - net-name: "{{ item.priv_net }}"
-    meta: "{{ item.meta }}"
-    userdata: |
-      #!/bin/bash
-      curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
-      cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
+    meta: "{{ item.meta | default (omit) }}"
+    userdata: "{{ item.userdata | default(omit) }}"
   loop: "{{ instances }}"
 
 - name: Add/Remove floating IP from an instance

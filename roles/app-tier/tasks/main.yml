@@ -4,7 +4,7 @@
     name: "{{item}}"
     state: present
   loop:
-    - java-1.8.0-openjdk
+    - "{{jdk}}"
     - "{{payload}}"
   
 - name: verify folder exist for {{ payload }}

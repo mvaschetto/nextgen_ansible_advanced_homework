@@ -1,24 +1,24 @@
 app-tier
 =========
 
-This rule will setup workstation to works with openstack.
+This rule will install postgresql from yum repository.
 
 Requirements
 ------------
 
-No Requirments.
+No specific requirments
 
 Dependencies
 ------------
 
-No dependencies.
+No dependencies
 
 Example Playbook
 ----------------
 
-    - hosts: localhost
+    - hosts: databases
       roles:
-         - setup-workstation
+         - db-tier
 
 License
 -------
