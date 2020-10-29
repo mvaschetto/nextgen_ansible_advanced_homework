@@ -15,7 +15,7 @@
     register: webpage
 
   - name: debug
-    debug: var=webpage
+    debug: var=webpage.result[0]
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
